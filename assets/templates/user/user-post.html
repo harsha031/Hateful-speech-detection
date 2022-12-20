@@ -1,0 +1,693 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User-Post</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="icon"
+      href="{% static '/main/images/smartphone.png' %}"
+      type="image/png"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
+
+   
+    <link rel="stylesheet" href="{% static 'main/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'main/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com/3.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+    <style>
+     
+     
+      #file {
+        border: 2px dashed #3ebfcb !important;
+      }
+      .color input {
+        background-color: #f1f1f1;
+      }
+      .files:before {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        width: 100%;
+        content: attr(data-before);
+        color: #000;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+      }
+      #file {
+        display: inline-block;
+        width: 100%;
+        padding: 95px 0 0 100%;
+        background: url("https://i.imgur.com/VXWKoBD.png") top center no-repeat
+          #fff;
+        background-size: 55px 55px;
+      }
+    </style>
+
+
+    <style>
+    
+    .date {
+      font-size: 11px;
+    }
+    
+    .comment-text {
+      font-size: 12px;
+    }
+    
+    .fs-12 {
+      font-size: 12px;
+    }
+    
+    .shadow-none {
+      box-shadow: none;
+    }
+    
+    .name {
+      color: #007bff;
+    }
+    
+   
+    
+    .cursor {
+      cursor: pointer;
+    }
+    
+    .textarea {
+      resize: none;
+    }
+    
+    .fa-facebook {
+      color: #4f3aeb;
+    }
+    
+    .fa-twitter {
+      color: #45afff;
+    }
+    
+    .fa-linkedin {
+      color: #006ba4;
+    }
+    
+    .fa-instagram {
+      color: #a540e4;
+    }
+    
+    .fa-dribbble {
+      color: #ea4c89;
+    }
+    
+    .fa-pinterest {
+      color: #ff001e;
+    }
+    
+    .fa {
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    
+.file-drop-area{
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  /*width: 450px;*/
+  max-width: 100%;
+  padding:25px;
+  border: 1px dashed rgba(255,255,255,0.4);
+  border-radius: 3px;
+  transition: .2s;
+}
+
+.choose-file-button{
+
+  flex-shrink: 0;
+  background-color: rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  padding:8px 15px;
+  margin-right: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+
+}
+
+.file-message{
+
+  font-size: small;
+  font-weight: 300;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-input{
+  position: absolute;
+  left: 0;
+  top:0;
+  height: 100%;
+  widows: 100%;
+  cursor: pointer;
+  opacity: 0;
+
+}
+  </style>
+
+
+  <!-- notificationstylesheet -->
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300&display=swap");
+   
+    .containers {
+      padding: 10px;
+      height: 255px;
+      width: 350px;
+      background-color: rgb(42, 42, 227);
+      border-radius: 10px;
+      clip-path: circle(6% at 5.5% 7%);
+      transition: all 0.7s;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .containers .infos {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: #fff;
+      transition: all 0.7s;
+    }
+    .containers .contents {
+    }
+    .containers:hover {
+      clip-path: circle(75% at 50% 50%);
+    }
+    .containers:hover .infos {
+      display: none;
+    }
+    .contents h3 {
+      font-size: 18px;
+      color: #fff;
+      
+      font-family: "Source Sans Pro", sans-serif;
+    }
+    .contents span {
+      font-size: 10px;
+      color: #fff;
+    }
+    .contents ul {
+      list-style: none;
+      display: flex;
+      margin-top: 10px;
+    }
+    .contents ul li {
+      height: 20px;
+      width: 20px;
+      padding: 10px;
+      display: flex;
+    
+      align-items: flex-end;
+      color: #fff;
+      border-radius: 5px;
+    }
+    .contents ul li a {
+      transition: all 0.5s;
+    }
+    .contents ul li:hover i {
+      transform: scale(2);
+    }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div id="colorlib-page">
+      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+      <aside id="colorlib-aside" role="complementary" class="js-fullheight">
+        <nav id="colorlib-main-menu" role="navigation">
+          <ul>
+
+
+           
+
+
+
+
+
+
+            <li>
+              <img
+                style="width: 100px; height: 100px ;"
+                class="rounded-pill"
+                src="/media/{{k.user_image}}"
+                alt="#"
+              />
+            </li>
+            <li class="colorlib-active">
+              <a href="{% url 'user_post' %}">Post</a>
+            </li>
+            <li><a href="{% url 'user_myprofile' %}">My Profile</a></li>
+            <li><a href="{% url 'user_find' %}">Find</a></li>
+            <li>
+              <a href="#element" data-toggle="collapse" aria-expanded="false"
+                >> Friends
+              </a>
+            </li>
+            <ul class="collapse" id="element">
+              <li>
+                <a href="{% url 'user_friend_request' %}">> Friend Request</a>
+              </li>
+              <li>
+                <a href="{% url 'user_friend_response' %}">> Friend Response</a>
+              </li>
+              <li>
+                <a href="{% url 'user_myfriends_list' %}">> My Friends List</a>
+              </li>
+            </ul>
+            <li><a href="{% url 'user_feedback' %}">Feedback</a></li>
+            <li><a href="{% url 'home_index' %}">Logout</a></li>
+
+
+            <li>
+              <div class="containers text-white fa fa-bell"> <div class="content">
+                {% for w in notify %}
+                 <h5 class="mt-5 text-white">{{w.warned_by}}</h5> 
+                 <span class="text-white">{{w.warn_mssg}}</span> 
+                 {% empty %}
+                <p class=" mt-5 text-white"   >You have no Notifications</p>
+                 {% endfor %}
+                 <a href="{% url 'user_notifications' %}" class="mt-5" style="color: cyan;">View More</a>
+                 </div>
+            </div>
+
+            </li>
+
+
+
+
+
+          </ul>
+        </nav>
+
+        <div class="colorlib-footer">
+          <p class="pfooter">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved <br />
+            Designed and Developed By:
+            <a href="https://www.codebook.in" target="_blank">B.L.Harsha Vardhan</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </aside>
+      <!-- END COLORLIB-ASIDE -->
+      <!-- END COLORLIB-MAIN -->
+      <div id="colorlib-main">
+        <div class="container">
+          <section class="ftco-section ftco-no-pt ftco-no-pb">
+          <div class="row" style="background: linear-gradient(to top, rgb(9, 9, 121) 11.2%, rgb(68, 6, 161) 53.7%, rgb(150, 84, 9) 100.2%);">
+            <div class="col-xl-9 px-md-5 py-5">
+              <div class="row pt-md-4">
+                
+                <form action=""  onsubmit='return loginvalidation();' name='myform'  method="post" enctype="multipart/form-data" >
+                  {% csrf_token %}
+                  <div class="col-md-12 col-lg-6 col-12">
+                    
+                    <h2 style="color: rgb(6, 172, 255); font-size: xx-large;" class="ml-3 font-semibold">Post</h2>
+                    <div class="file-drop-area">
+
+                      <span class="choose-file-button text-white">Upload</span>
+                      <span class="file-message"></span>
+                      <input type="file" name="file" class="file-input" accept=".jfif,.jpg,.jpeg,.png,.gif,.wav,.pcm,.aiff,.mp4" multiple>
+                      
+                  
+                    </div>
+                  </div>
+                  
+                  <div class="mt-1 col-md-12" style="color: rgb(6, 172, 255);">
+                    <textarea
+                    name="desc"
+                    id=""
+                    style="color:#004683 ;"
+                    cols="60"
+                    rows="2"
+                    class="border-2"
+                    placeholder="Enter Post........."
+                  ></textarea>
+                  <button type="submit" class="btn bg-primary  text-white mb-5">
+                  Post
+                  </button>
+                </div>
+                
+              </form>
+              {% for i in post %}
+
+                  <div class="col-md-12">
+                    <div class="blog-entry-2 ftco-animate">
+                      <div class="text pt-4">
+                        <div class="author mb-4 d-flex align-items-center">
+                          
+                          <img  style="border-radius: 20px ; height: 60px; width:60px ;" src="media/{{i.post_user.user_image}}" alt="">
+                         
+
+                        
+                          <div class="ml-3 info">
+                            {% if i.post_user.user_id == k.user_id %}
+                            <h3><a class="text-white" href="{% url 'user_myprofile' %}">{{i.post_user.user_name}}</a></h3>
+                            {% else %}
+                            <h3><a class="text-white" href="{% url 'user_send_friend_request_view' i.post_user.user_id %}">{{i.post_user.user_name}}</a></h3>
+                            {% endif %}
+                            <span>{{i.post_user.user_email}}</span> ,{{i.post_date}}
+                          </div>
+                        </div>
+
+                        <!-- enterhere  -->
+                        {% if i.post_image %}
+                        <img style=" border-radius: 6%; height: 350px ;  width: 550px ; " class="ml-5" src="media/{{i.post_image}}" />
+                        {% endif %}
+                        
+                        
+                        {% if i.post_audio %}
+                        <audio id="audioNode" src="/media/{{i.post_audio}}" controls></audio>
+                        {% endif %}
+
+                        {% if i.post_video %}
+                        <video src="/media/{{i.post_video}}" controls style="height:400px ; width: 700px;"></video>
+                        {% endif %}
+
+
+                        <br />
+                        <p class="mb-4 mt-3 text-white">
+                         {{i.post_desc}}
+                        </p>
+
+
+
+
+
+                           
+                       <div class="d-flex justify-content-between">
+                        <form action="{% url 'like_post' %}"  class="ui form" method="post">
+                          {% csrf_token %}
+                          <input type="hidden" name="post_id" value="{{i.post_id}}">
+                          {% if user not in i.liked.all %}
+                          <button type="submit"  class="btn btn-info btn-sm shadow-none ml-3 ui button positive"><i class="fa fa-thumbs-up">&nbsp;like</i></button>
+                          {% else %}
+                          <button type="submit" class="btn btn-danger btn-sm shadow-none ml-3 ui button negative"><i class="fa fa-thumbs-o-up"></i></button>
+                          
+                          {% endif %}
+                        </form>
+                        <h5 class="text-white">
+                         
+                          
+
+                          <i class="fa fa-heart" style="color:#e4405f ;"></i> &nbsp; &nbsp;{{i.liked.all.count }} Likes</h5>
+                        </div>
+                        <div  id="myGroup" >
+                                    <div class=" text-white p-2" style="color:#004683 ;">
+                                        <div class="d-flex flex-row fs-12">
+                                             
+                                              <div class="like p-2 cursor action-collapse" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1{{i.post_id}}" href="#collapse-1{{i.post_id}}"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                                              <div class="like p-2 cursor action-collapse" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-2{{i.post_id}}" href="#collapse-2{{i.post_id}}"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                          </div>
+                                      </div>
+                                      <div id="collapse-1{{i.post_id}}" style="color:#004683 ;" class=" text-white collapse" data-parent="#myGroup">
+                                        <h1 class="text-white">Comments</h1>
+                                        {% for a in comment %}
+                                        {% if a.comment_post.post_id == i.post_id %}
+                                          <div class="mt-3 d-flex flex-row align-items-start">
+                                              <img src="media/{{a.comment_user.user_image}}" alt="" class="rounded-circle" style=" width:50px ; height:50px ; ">
+                                          </div>
+                                              <h4 style="color:whitesmoke ;">{{a.comment_user.user_name}}- {{a.comment_date}}</h4>
+                                              <p style="color:whitesmoke ;">{{a.comment}}</p>
+                                        {% endif %}
+                                        {% endfor %}
+                                                
+                                      </div>
+                                      <div id="collapse-2{{i.post_id}}" style="color:#004683 ;" class="text-white p-2 collapse" data-parent="#myGroup">
+                                          <div class="d-flex flex-row align-items-start"><i class="fa fa-facebook border p-3 rounded mr-1"></i><i class="fa fa-twitter border p-3 rounded mr-1"></i><i class="fa fa-linkedin border p-3 rounded mr-1"></i><i class="fa fa-instagram border p-3 rounded mr-1"></i><i class="fa fa-dribbble border p-3 rounded mr-1"></i>
+                                              <i
+                                                  class="fa fa-pinterest-p border p-3 rounded mr-1"></i>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <form action="{% url 'comment' i.post_id %}"  onsubmit='return commentvalidation();' name='commentform'  method="post">
+                                    {% csrf_token %}
+                                    <div class="d-flex flex-row "><img class=" mt-3 rounded-circle" src="media/{{k.user_image}}" style=" width:50px ; height:50px ; "><textarea class="form-control ml-2 " name="comment"></textarea></div>
+                                    <div class="mt-2 "><button class=" ml-5 btn btn-primary btn-sm shadow-none " style="width:100px ;"  type="submit">comment</button></div>
+                                
+
+
+
+
+                                    
+                                  </form>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <!-- <div class="row">
+                    <div class="col-12">
+                      <div class="block-27 justify-center">
+                        <ul>
+                          <li><a href="#">&lt;</a></li>
+                          <li class="active"><span>1</span></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">5</a></li>
+                          <li><a href="#">&gt;</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div> -->
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination ml-2">
+                        {% if post.has_previous %}
+                            <!-- <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li> -->
+                            <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ post.previous_page_number }}">Previous</a></li>
+                        {% endif %}
+                        {% if post.has_next %}
+                        <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ post.next_page_number }}">Next</a></li>
+                        <!-- <li class="page-item"><a class="page-link" href="?page={{ r.paginator.num_pages }}">Last &raquo;</a></li> -->
+                        {% endif %}
+                    </ul>
+                    Page {{ post.number }} of {{ post.paginator.num_pages }}.
+                  </nav>
+                </div>
+                
+             
+              <!-- END-->
+            </div>
+           
+            <div  class="col-xl-3 sidebar ftco-animate bg-light pt-5">
+              
+          
+              
+              <div class="sidebar-box ftco-animate">
+                <h3 class="sidebar-heading">My Post</h3>
+                {% for j in popular %}
+                {% if j.post_image %}
+                <img class="ml-3 mb-3" style="width:200px ; height:100px ; " src="media/{{j.post_image}}" alt="">
+
+                {% endif %}
+                
+                
+                {% if j.post_audio %}
+                <audio id="audioNode"  style="width:200px ; height:100px ; " src="/media/{{j.post_audio}}" controls></audio>
+                {% endif %}
+                {% if j.post_video %}
+                <video src="/media/{{j.post_video}}" controls style="height:200px ; width: 200px;"></video>
+                {% endif %}
+                <div class="block-21 mb-2 d-flex col-10">
+                 {{j.post_desc}}
+                </div>
+                    
+                      <div class="col-12 mb-5">
+                        <a href="#"
+                          ><span class="icon-calendar"></span> {{j.post_date}}</a
+                        >
+                      
+                        <a href="#"
+                          ><span class="icon-person"></span>{{j.post_user.user_display_name}}</a
+                        >
+                      
+                        <a href="#"><span class="icon-chat"></span> 19</a>
+                      </div>
+                    
+                  
+                      {% endfor %}
+                </div>
+               
+              </div>
+
+              
+                
+          </div>
+              
+        </section>
+      </div>
+    </div>
+    <!-- END COLORLIB-PAGE -->
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+      <svg class="circular" width="48px" height="48px">
+        <circle
+          class="path-bg"
+          cx="24"
+          cy="24"
+          r="22"
+          fill="none"
+          stroke-width="4"
+          stroke="#eeeeee"
+        />
+        <circle
+          class="path"
+          cx="24"
+          cy="24"
+          r="22"
+          fill="none"
+          stroke-width="4"
+          stroke-miterlimit="10"
+          stroke="#F96D00"
+        />
+      </svg>
+    </div>
+    <script type="text/javascript">
+      function loginvalidation(){
+          
+          var file = document.myform.file;
+          var desc = document.myform.desc;
+
+            if (file.value == "" && desc.value == "") {
+              alert("Please Upload a Post file or Enter any Post Description:");
+              file.focus();
+              return false;
+            }
+          return true;
+      }
+     
+  </script>
+  <script type="text/javascript">
+    function commentvalidation(){
+        
+        var comment = document.commentform.comment;
+          if (comment.value == "") {
+            alert("Please Enter Your Comment:");
+            comment.focus();
+            return false;
+          }
+        return true;
+    }
+   
+</script>
+
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+        title: "Success!",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+        title: "Warning :)",
+        text: "{{message}}",
+        icon: "warning",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+        title: "info :)",
+        text: "{{message}}",
+        icon: "info",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+    <script src="{% static 'main/js/jquery.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'main/js/popper.min.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'main/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'main/js/aos.js' %}"></script>
+    <script src="{% static 'main/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'main/js/scrollax.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'main/js/google-map.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
+  </body>
+</html>

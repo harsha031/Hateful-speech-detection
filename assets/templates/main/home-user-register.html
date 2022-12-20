@@ -1,0 +1,347 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User-Register</title>
+    
+    <link rel="icon" href="{% static 'main/images/smartphone.png' %}" type="image/png" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'main/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'main/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/forms.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+  <style>
+  </style>
+
+
+
+
+  </head>
+  <body  style="background: linear-gradient(to top, rgb(9, 9, 121) 11.2%, rgb(68, 6, 161) 53.7%, rgb(150, 84, 9) 100.2%);">
+
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+                    <li><img src="{% static 'main/images/smartphone.png' %}" width="100" class="img-fluid" alt=""></li>
+					<li><a href="{% url 'home_index' %}">Home</a></li>
+					<li><a href="{% url 'admin_login' %}">Admin</a></li>
+					<li class="colorlib-active"><a href="{% url 'user_login' %}">User</a></li>
+					<li><a href="{% url 'home_about' %}">About</a></li>
+					<li><a href="{% url 'home_contact' %}">Contact</a></li>
+				</ul>
+			</nav>
+
+			<div class="colorlib-footer">
+				<p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <br> Designed and Developed By:  <a href="https://www.codebook.in" target="_blank">B.L.Harsha Vardhan</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+			</div>
+		</aside> <!-- END COLORLIB-ASIDE -->
+		<div id="colorlib-main">
+			<section class="ftco-section contact-section px-md-4">
+	      <div class="container">
+                    
+                <div class="row block-9 justify-content-center " >
+                    
+
+
+
+
+                        <div class="wrapper">
+                          <form action="" name='myform'  onsubmit='return validate();'  method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                              <div class="h5 font-weight-bold text-center mb-3">Registration</div>
+                              <div class="form-group d-flex align-items-center">
+                                  <div class="icon"><span class="far fa-user"></span></div>
+                                  <input autocomplete="off" type="text" name="fullname" class="form-control" placeholder="User Name">
+                              </div>
+                              
+                              <div class="form-group d-flex align-items-center">
+                                  <div class="icon"><span class="far fa-envelope"></span></div>
+                                  <input autocomplete="off" type="email" name="email" class="form-control" placeholder="Email">
+                              </div>
+                              <div class="form-group d-flex align-items-center">
+                                <div class="icon"><span class="far fa-user"></span></div>
+                                <input autocomplete="off" type="text" name="displayname" class="form-control" placeholder="Display Name">
+                            </div>
+                              <div class="form-group d-flex align-items-center">
+                                  <div class="icon"><span class="fas fa-phone"></span></div>
+                                  <input autocomplete="off" type="tel" name="contact" class="form-control"  placeholder="Phone">
+                              </div>
+                              <div class="form-group d-flex align-items-center">
+                                  <div class="icon"><span class="fas fa-map-marker-alt"></span></div>
+                                  <input autocomplete="off" type="text" name="city" class="form-control" placeholder="City">
+                              </div>
+                              <div class="form-group d-flex align-items-center">
+                                <div class="icon"><span class="fa fa-calendar"></span></div>
+                                <input autocomplete="off" type="date" name="date" class="form-control" placeholder="Date">
+                            </div>
+                              
+
+                              <div class="form-group d-flex align-items-center">
+                                <div class="icon"><span class="fa fa-camera-retro"></span></div>
+                                &nbsp; &nbsp;
+                                <input type="file" class="block text-sm text-slate
+                                file:mr-4 file:py-2 
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-violet-50 file:text-violet-700
+                                hover:file:bg-violet-100
+                              " accept="image/*" name="image">
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="icon"><span class="fas fa-key"></span></div>
+                                <input autocomplete="off" type="password" name="password" class="form-control" placeholder="Password">
+                                <div class="icon btn"></div>
+                            </div>
+
+
+                             
+                             <center>
+                              <div class="btn btn-primary mb-3">
+                                <button type="submit" class=" text-white" >
+                                  Register
+                              </button>
+                            </div>
+                            <p class="text-white mt-3">Alreay have a account? 
+                              <br>
+                              <a class="btn btn-primary mt-2 mb-2" href="{% url 'user_login' %}">Login</a></p>
+                              </center>
+                              <div class="terms mb-2">
+                                  By clicking "Signup", you acknowledge that you have read the
+                                  <a href="#">Privacy Policy</a> and agree to the
+                                  <a href="#">Terms of Service</a>.
+                              </div>
+                              <div class="connect border-bottom mt-4 mb-4"></div>
+                              <ul class="p-0 social-links">
+                                  <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                                  <li><a href="#"><span class="fab fa-google"></span></a></li>
+                                  <li><a href="#"><span class="fab fa-github"></span></a></li>
+                              </ul>
+                          </form>
+                      </div>
+                    </div>
+	        </div>
+	      </div>
+	    </section>
+		</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+ 
+  <script type="text/javascript">
+    function validate(){
+      var username = document.myform.fullname
+      var email = document.myform.email
+      var emailpattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([com\co\.\in])+$/; // to validate email id
+      var displayname = document.myform.displayname
+      var contact = document.myform.contact
+      var city = document.myform.city
+
+      var datepattern =  /^\d{4}-\d{2}-\d{2}$/;
+      var date = document.myform.date
+      var letter = /[a-z]/;
+      var upper = /[A-Z]/;
+      var number = /[0-9]/; 
+      var image = document.myform.image
+      var password = document.myform.password
+  
+    
+    
+      if (username.value.length <= 0) {
+      alert("Name can't be blank");
+      username.focus();
+      return false;
+      
+      }
+      if (email.value.length <= 0) {
+      alert("Enter your email id");
+      email.focus();
+      return false;
+      
+      }
+      if(!email.value.match(emailpattern)){
+      alert("Invalid Email format"); 
+      email.focus();            
+      return false;
+      }
+      if (displayname.value.length <= 0) {
+        alert("Display Name can't be blank");
+        displayname.focus();
+        return false;
+        
+        }
+     
+      if (contact.value.length <= 0) {
+      alert("Enter your mobile number");
+      contact.focus();
+      return false;
+      
+      }
+      if(isNaN(contact.value)){
+      alert("Invalid Mobile number");
+      return false;
+      }
+      if(contact.value.length=="" || contact.value.length!=10){
+      alert("Invalid Mobile number");
+      return false;
+      }
+      if (city.value.length <= 0) {
+        alert("Enter Your Locaion");
+        city.focus();
+        return false;
+        
+        }
+      if(!date.value.match(datepattern )){
+      alert("Date pattern incorrect, it should match the following pattern: YYYY-MM-DD"); 
+      date.focus();            
+      return false;
+     }
+      if(date.value.length <= 0) {
+      alert("Enter your date of birth");
+      date.focus();
+      return false;
+      
+      }
+      if (image.value.length == "") {
+      alert("upload  profile image");
+      image.focus();
+      return false;
+      
+      }
+      if (password.value.length <= 0) {
+      alert("Enter your password");
+      password.focus();
+      return false;
+      
+      }
+      if (!letter.test(password.value)) {
+      alert("Please make sure password includes a lowercase letter.");
+      password.focus();
+      return false;
+      
+      }
+      if (!upper.test(password.value)) {
+      alert("Please make sure password includes a uppercase letter.");
+      password.focus();
+      return false;
+      
+      }
+      if (!number.test(password.value)) {
+      alert("Please make sure password Includes a Digit.");
+      password.focus();
+      return false;
+      
+      }
+      return true;
+    }
+      
+    </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+        title: "Successfull :)",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+        title: "Warning :)",
+        text: "{{message}}",
+        icon: "warning",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+
+
+
+
+  <script src="{% static 'main/js/jquery.min.js' %}"></script>
+  <script src="{% static 'main/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'main/js/popper.min.js' %}"></script>
+  <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'main/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'main/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'main/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'main/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'main/js/aos.js' %}"></script>
+  <script src="{% static 'main/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'main/js/scrollax.min.js' %}"></script>
+  <script src="{% static 'main/js/google-map.js' %}"></script>
+  <script src="{% static 'main/js/main.js' %}"></script>
+    
+  </body>
+</html>

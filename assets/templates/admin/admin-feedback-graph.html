@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Admin-Feedback Chart</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- site icon -->
+      <link rel="icon" href="{% static 'admin/images/logo/smartphone.png' %}" type="image/png" />
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'admin/css/bootstrap.min.css' %}" />
+      <!-- site css -->
+      <link rel="stylesheet" href="{% static 'admin/style.css' %}" />
+      <!-- responsive css -->
+      
+      <link rel="stylesheet" href="{% static 'admin/css/responsive.css' %}" />
+      <!-- color css -->
+     
+      <link rel="stylesheet" href="{% static 'admin/css/colors.css' %}" />
+      <!-- select bootstrap -->
+      <link rel="stylesheet" href="{% static 'admin/css/bootstrap-select.css' %}" />
+      <!-- scrollbar css -->
+      <link rel="stylesheet" href="{% static 'admin/css/perfect-scrollbar.css' %}" />
+      <!-- custom css -->
+      <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}" />
+      <!-- calendar file css -->
+      <link rel="stylesheet" href="{% static 'admin/js/semantic.min.css' %}" />
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body class="inner_page map">
+      <div class="full_container">
+         <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+               <div class="sidebar_blog_1">
+                  <div class="sidebar-header">
+                     <div class="logo_section">
+                        <a href="{% url 'admin_dashboard' %}"><img class="logo_icon img-responsive" src="{% static 'admin/images/logo/logo_icon.png' %}" alt="#" /></a>
+                     </div>
+                  </div>
+                  
+               <div class="sidebar_blog_2">
+                  <h4>Admin</h4>
+                  <ul class="list-unstyled components">
+                     <li class="active">
+                        <a href="{% url 'admin_dashboard' %}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        
+                     </li> 
+                     <li>
+                        <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-star"></i> <span>User Management</span></a>
+                        <ul class="collapse list-unstyled" id="element">
+                           <li><a href="{% url 'admin_pending_users' %}">> <span>Pending Users</span></a></li>
+                           <li><a href="{% url 'admin_all_users' %}">> <span>All Users</span></a></li>
+                           <li><a href="{% url 'admin_user_profile' %}">> <span>User Profile</span></a></li>
+                        </ul>
+                     </li>
+                     
+                     <li>
+                       <a href="#toxic_element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-comments-o orange_color"></i> <span>Hatred Detector</span></a>
+                       <ul class="collapse list-unstyled" id="toxic_element">
+                          <li><a href="{% url 'admin_toxic_users' %}">> <span>Hatred Users</span></a></li>
+                          <li><a href="{% url 'admin_block_toxic_users' %}">> <span>Blocked Hatred Users</span></a></li>
+                          <li><a href="{% url 'admin_toxic_users_graph' %}">> <span>Hatred Users Graph</span></a></li>
+
+                       </ul>
+                    </li>
+                     <li>
+                       <a href="#word_element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-close red_color"></i> <span>Hatred Portal</span></a>
+                       <ul class="collapse list-unstyled" id="word_element">
+                          <li><a href="{% url 'admin_add_toxic_words' %}">> <span>Add Words</span></a></li>
+                          <li><a href="{% url 'admin_manage_toxic_words_categorey' %}">> <span>Manage Words</span></a></li>
+                          <li><a href="{% url 'admin_toxic_words_graph' %}">> <span>Words Graph</span></a></li>
+
+                       </ul>
+                    </li>
+                     <li class="active">
+                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Feedback</span></a>
+                        <ul class="collapse list-unstyled" id="additional_page">
+                           <li>
+                              <a href="{% url 'admin_sentiment_analysis' %}">> <span>Feedback Sentiment Analysis</span></a>
+                           </li>
+                           <li>
+                              <a  href="{% url 'admin_feedback_graph' %}">> <span>Feedback Analysis</span></a>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+               <!-- topbar -->
+               <!-- topbar -->
+               <div class="topbar">
+                  <nav class="navbar navbar-expand-lg navbar-light">
+                     <div class="full">
+                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                        
+                        <div class="right_topbar">
+                           <div class="icon_info">
+                              <ul>
+                              </ul>
+                              <ul class="user_profile_dd">
+                                 <li>
+                                    <a class="dropdown-toggle " data-toggle="dropdown"><img class="img-responsive rounded-circle" src="{% static 'admin/images/logo/businessman.png' %}" alt="#" /><span class="name_user">Settings</span></a>
+                                    <div class="dropdown-menu">
+                                       
+                                       <a class="dropdown-item fa fa-sign-out" href="{% url 'home_index' %}"><span> &nbsp; Log Out</span></a> </div>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </nav>
+               </div>
+               <!-- end topbar -->
+               <!-- end topbar -->
+               <!-- dashboard inner -->
+               <div class="midde_cont">
+                  <div class="container-fluid">
+                     <div class="row column_title">
+                        <div class="col-md-12">
+                           <div class="page_title">
+                              <h2>Chart</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- row -->
+                     <div class="row column1">
+                        <div  class="container-fluid">
+ 
+                            <div class="row justify-content-center">
+                                <div class="col-6">
+                            <canvas id="myChart" width="100" height="30"></canvas>
+                        </div>
+                    </div>
+                            
+                           <script>
+                           const ctx = document.getElementById('myChart').getContext('2d');
+                           const myChart = new Chart(ctx, {
+                               type: 'bar',
+                               data: {
+                                   labels: ['Very Positive','Positive',  'Neutral','Negative','Very Negative'],
+                                   datasets: [{
+                                       label: ' Reviews',
+                                       data: [ '{{i}}' , '{{j}}' , '{{k}}' , '{{l}}', '{{m}}'],
+                                     
+                                       backgroundColor: [
+                                           'rgba(255, 99, 132, )',
+                                           'rgba(54, 162, 235, )',
+                                           'rgba(255, 206, 86, )',
+                                           'rgba(75, 192, 192, )',
+                                           'rgba(153, 102, 255,)',
+                                           'rgba(255, 159, 64, )'
+                                       ],
+                                       borderColor: [
+                                           'rgba(255, 99, 132, 1)',
+                                           'rgba(54, 162, 235, 1)',
+                                           'rgba(255, 206, 86, 1)',
+                                           'rgba(75, 192, 192, 1)',
+                                           'rgba(153, 102, 255, 1)',
+                                           'rgba(255, 159, 64, 1)'
+                                       ],
+                                       borderWidth: 1
+                                   }]
+                               },
+                               options: {
+                                   scales: {
+                                       y: {
+                                           beginAtZero: true
+                                       }
+                                   }
+                               }
+                           });
+                           </script>
+                           </div>
+                        
+                        
+                        
+                        
+                     </div>
+                     <!-- end row -->
+                  </div>
+                  <!-- footer -->
+                
+               </div>
+               <!-- footer -->
+               <div class="container-fluid">
+                  <div class="footer">
+                     <p>Copyright © 2022. All rights reserved.<br><br>
+                        Designed and Developed By: <a href="https://www.codebook.in" target="_blank">B.L.Harsha Vardhan</a>
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <!-- end dashboard inner -->
+               <!-- end dashboard inner -->
+            </div>
+         </div>
+      </div>
+      
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+        title: "Success!",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+        title: "Warning :)",
+        text: "{{message}}",
+        icon: "warning",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+      <!-- jQuery -->
+      <script src="{% static 'admin/js/jquery.min.js' %}"></script>
+      <script src="{% static 'admin/js/popper.min.js' %}"></script>
+      <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+      <!-- chart js -->
+      <script src="{% static 'admin/js/Chart.min.js' %}"></script>
+      <script src="{% static 'admin/js/Chart.bundle.min.js' %}"></script>
+      <script src="{% static 'admin/js/utils.js' %}"></script>
+      <script src="{% static 'admin/js/analyser.js' %}"></script>
+      <!-- wow animation -->
+      <script src="{% static 'admin/js/animate.js' %}"></script>
+      <!-- select country -->
+      <script src="{% static 'admin/js/bootstrap-select.js' %}"></script>
+      <!-- owl carousel -->
+      <script src="{% static 'admin/js/owl.carousel.js' %}"></script> 
+      <!-- nice scrollbar -->
+      <script src="{% static 'admin/js/perfect-scrollbar.min.js' %}"></script>
+      <!-- sidebar -->
+      <script>
+         var ps = new PerfectScrollbar('#sidebar');
+      </script>
+      <!-- custom js -->
+      <script src="{% static 'admin/js/custom.js' %}"></script>
+      
+   </body>
+</html>

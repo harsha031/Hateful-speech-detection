@@ -1,0 +1,385 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User-Find</title>
+
+    <link
+      rel="icon"
+      href="{% static '/main/images/smartphone.png' %}"
+      type="image/png"
+    />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'main/css/open-iconic-bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'main/css/animate.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'main/css/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'main/css/owl.theme.default.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'main/css/aos.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'main/css/ionicons.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'main/css/bootstrap-datepicker.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'main/css/jquery.timepicker.css' %}"
+    />
+
+    <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/icomoon.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  </head>
+  <body>
+    <div id="colorlib-page">
+      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+      <aside id="colorlib-aside" role="complementary" class="js-fullheight">
+        <nav id="colorlib-main-menu" role="navigation">
+          <ul>
+            <li>
+              <img
+              style="width: 100px; height: 100px ;"
+              class="rounded-pill"
+              src="/media/{{k.user_image}}"
+              alt="#"
+            />
+            </li>
+            <li><a href="{% url 'user_post' %}">Post</a></li>
+            <li><a href="{% url 'user_myprofile' %}">My Profile</a></li>
+            <li class="colorlib-active">
+              <a href="{% url 'user_find' %}">Find</a>
+            </li>
+            <li>
+              <a href="#element" data-toggle="collapse" aria-expanded="false"
+                >> Friends
+              </a>
+            </li>
+            <ul class="collapse" id="element">
+              <li>
+                <a href="{% url 'user_friend_request' %}">> Friend Request</a>
+              </li>
+              <li>
+                <a href="{% url 'user_friend_response' %}">> Friend Response</a>
+              </li>
+              <li>
+                <a href="{% url 'user_myfriends_list' %}">> My Friends List</a>
+              </li>
+            </ul>
+            <li><a href="{% url 'user_feedback' %}">Feedback</a></li>
+            <li><a href="{% url 'home_index' %}">Logout</a></li>
+            
+          <li><a href="{% url 'user_notifications' %}" class="mt-5" style="color: cyan;"> <i class="fa fa-bell" aria-hidden="true"></i> </a></li>
+          </ul>
+        </nav>
+
+        <div class="colorlib-footer">
+          <p class="pfooter">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved <br />
+            Designed and Developed By:
+            <a href="https://www.codebook.in" target="_blank">B.L.Harsha Vardhan</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </aside>
+      <!-- END COLORLIB-ASIDE -->
+      <div id="colorlib-main">
+        <section
+          class="ftco-about img ftco-section ftco-no-pt ftco-no-pb"
+          id="about-section"
+        >
+          <div class="container">
+            <div class="row d-flex">
+    <div class="col-xl-8 py-5" style="background: linear-gradient(to top, rgb(9, 9, 121) 11.2%, rgb(68, 6, 161) 53.7%, rgb(150, 84, 9) 100.2%);">
+                <!-- END-->
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="text ml-3">
+                        <h1><span>Find Friends</span></h1>
+                      </div>
+
+                      <div class="col-12">
+                        <form action="" method="get">
+                       
+                          <div class=" mt-5 p-4">
+                            <div class="input-group mb-3">
+                              <input type="text" name='search' placeholder="Search..." class="form-control">
+                              <div class="input-group-append"><button class="btn btn-primary"><i class="icon icon-search"></i></button></div>
+                            </div>
+                          </form>
+                          {% for i in person %}
+                          <div class="d-flex flex-row justify-content-between mx-1">
+                            <div class="d-flex flex-column p-3"><img 
+                              width="80"
+                              height="80"
+                              style="border-radius: 10px;"
+                              src="media/{{i.i_profile_user.user_image}}"
+                              alt="#"
+                            />
+                            </div>
+                            <div class="d-flex flex-column p-3 mt-3"><h5 class="text-white">{{i.i_profile_user.user_name}}</h5>
+                            </div>
+                            <div class="price pt-3 pl-3 mt-3">
+                              <h5><a href="{% url 'user_send_friend_request_view' i.i_profile_user.user_id %}"><button
+                                type="button"
+                                class="btn cur-p btn-outline-primary fa fa-user"
+                              >
+                                &nbsp View Profile
+                              </button></a></h5>
+                            </div>
+                          </div>
+                              {% endfor %}
+                            
+                          </div>	
+                        </div>
+
+
+                        <div class="white_shd full margin_bottom_30">
+                          <div class="full graph_head"></div>
+                          <div class="table_section padding_infor_info">
+                            <div class="table-responsive-sm">
+                              <table class="table table-hover">
+                                <div class="ftco-about">
+                                  <div class="text mt-5">
+                                    <h4 class="text-white"><span> suggestions</span></h4>
+                                  </div>
+                                </div>
+                                <thead>
+                                  <tr class="text-white">
+                                    <th>Profile</th>
+                                    <th>Fullname</th>
+                                    <th>DisplayName</th>
+                                    <th>Location</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for i in match %}
+                                  {% if i.match_percent >= 40 %}
+                                  <tr class="text-white">
+                                    <td>
+                                      <img
+                                        width="50"
+                                        height="50"
+                                        class="rounded-circle"
+                                        src="media/{{i.i_profile_user.user_image}}"
+                                        alt="#"
+                                      />
+                                    </td>
+                                    <td>{{i.i_profile_user.user_name}}</td>
+                                    <td>{{i.i_profile_user.user_display_name}}</td>
+                                    <td>{{i.i_profile_user.user_city}}</td>
+                                   
+                                    <td>
+                                      {% if i.match_percent == None %}
+                                  
+                                        <h2 class=" mt-5 text-white"   >Empty</h2>
+                                    
+                                     
+                                      
+
+                                      {% else %}
+                                      
+                                      <a href="{% url 'user_send_friend_request_view' i.i_profile_user.user_id %}"><button
+                                        type="button"
+                                        class="btn cur-p btn-outline-primary fa fa-user"
+                                      >
+                                        &nbsp View Profile
+                                      </button></a>
+                                      {% endif %}
+                                    </td>
+                                  </tr>
+                                  {% endif %}
+                                {% empty %}
+                                <tr class="text-white">
+                                  <td></td>
+                                  <td></td>
+                                  <td>
+                                    <h2 class=" mt-5 text-white"   >Empty</h2>
+                                  </td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+              <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+                <div class="  align-items-center">
+                  <div
+                    class="text px-4 pt-5 pt-md-0 px-md-4 pr-md-5 ftco-animate"
+                  >
+                    <h2 class="mb-4" style="font-family: initial">
+                      <span>Hatred  Speech Detection</span>
+                    </h2>
+                    <p>
+                      Hatred  Video Detection Dating suggests matches for you based on
+                      your preferences and information from your Dating profile.
+                      Your Dating preferences for potential matches can include
+                      height, age and education. We also use the things you and
+                      others do and provide on Hatred  Video Detection, for example:
+                      Information you added to your Hatred  Video Detection or Dating
+                      profile, like your hometown or the schools you attended.
+                      Interests like Hatred  Video Detection Groups and Events that you
+                      have in common. This can include past and future events that
+                      you expressed interest in or attended. You can also look for
+                      suggested matches in events and groups Note that we may use
+                      other signals from Hatred  Video Detection to help provide you more
+                      relevant matches. Keep in mind that if you have Suggest
+                      friends of friends turned on, you may see friends of your
+                      Hatred  Video Detection friends. If you turn off Suggest friends of
+                      friends, your suggested matches don’t include people who are
+                      friends with your Hatred  Video Detection friends. You can narrow
+                      your suggested matches by turning on This is a strong
+                      preference in the options for your ideal match. Learn how to
+                      change your Dating preferences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- END COL -->
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- END COLORLIB-MAIN -->
+    </div>
+    <!-- END COLORLIB-PAGE -->
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+      <svg class="circular" width="48px" height="48px">
+        <circle
+          class="path-bg"
+          cx="24"
+          cy="24"
+          r="22"
+          fill="none"
+          stroke-width="4"
+          stroke="#eeeeee"
+        />
+        <circle
+          class="path"
+          cx="24"
+          cy="24"
+          r="22"
+          fill="none"
+          stroke-width="4"
+          stroke-miterlimit="10"
+          stroke="#F96D00"
+        />
+      </svg>
+    </div>
+    
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+        title: "Success!",
+        text: "{{message}}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>swal({
+        title: "Warning :)",
+        text: "{{message}}",
+        icon: "warning",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+        title: "error :)",
+        text: "{{message}}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+    <script src="{% static 'main/js/jquery.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'main/js/popper.min.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'main/js/jquery.easing.1.3.js' %}"></script>
+
+    <script src="{% static 'main/js/jquery.waypoints.min.js' %}"></script>
+
+    <script src="{% static 'main/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'main/js/jquery.magnific-popup.min.js' %}"></script>
+
+    <script src="{% static 'main/js/aos.js' %}"></script>
+    <script src="{% static 'main/js/jquery.animateNumber.min.js' %}"></script>
+
+    <script src="{% static 'main/js/scrollax.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'main/js/google-map.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
+  </body>
+</html>
